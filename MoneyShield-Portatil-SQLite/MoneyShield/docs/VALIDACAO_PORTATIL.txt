@@ -1,0 +1,8 @@
+VALIDACAO DA VERSAO PORTATIL SQLITE
+
+- Estrutura SQLite criada a partir das 26 tabelas do projeto, incluindo tbl_atividade_missao.
+- Dados iniciais carregados: 4 niveis, 12 trilhas, 5 missoes, 2 cenarios, 6 opcoes, 2 avaliacoes, 10 questoes e 40 alternativas.
+- 111 blocos SQL utilizados por DAOs, repositorios e utilitarios foram verificados contra a estrutura SQLite apos a adaptacao de dialeto, sem erro de sintaxe.
+- Teste de fumaca local validou criacao de usuario, progresso, trilha, simulacao, avaliacao/resposta, atividade de missao, meta financeira e criacao administrativa de missao/cenario.
+
+A validacao acima verifica compatibilidade estrutural e de SQL. A preparacao no Windows baixa o driver SQLite e o runtime Java e cria os usuarios de demonstracao com BCrypt antes do primeiro uso.

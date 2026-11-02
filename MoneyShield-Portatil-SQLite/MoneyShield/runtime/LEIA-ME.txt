@@ -1,0 +1,2 @@
+O runtime Java da versão portátil é baixado automaticamente por PREPARAR_PORTATIL.ps1.
+Para gerar um pacote que já contenha o runtime, execute GERAR_PACOTE_PORTATIL_OFFLINE.bat no Windows.

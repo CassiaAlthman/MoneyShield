@@ -1,0 +1,2 @@
+As bibliotecas da versão portátil são baixadas automaticamente por PREPARAR_PORTATIL.ps1.
+Para gerar um pacote que já contenha estas bibliotecas, execute GERAR_PACOTE_PORTATIL_OFFLINE.bat no Windows.
