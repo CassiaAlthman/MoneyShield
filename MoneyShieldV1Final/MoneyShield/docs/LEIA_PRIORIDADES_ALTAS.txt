@@ -1,0 +1,54 @@
+MONEYSHIELD — CORREÇÕES DAS PRIORIDADES ALTAS
+
+ORDEM OBRIGATÓRIA
+
+1. Faça uma cópia do projeto atual.
+2. No SQL Server, execute UMA VEZ o arquivo:
+   03_CORRECOES_PRIORIDADES_ALTAS.sql
+3. Substitua/adicone os arquivos completos da pasta arquivos/src no src do projeto.
+4. Faça Build/Rebuild no IntelliJ.
+5. Execute os testes abaixo.
+
+IMPORTANTE SOBRE A MIGRAÇÃO DE MISSÕES
+
+Na PRIMEIRA execução, o script cria tbl_atividade_missao e invalida as conclusões antigas de missões que eram feitas pelo botão manual. O XP que havia sido concedido por essas conclusões antigas é retirado do progresso e o nível é recalculado. Em seguida, o Java passa a recalcular as missões a partir de evidências reais do sistema.
+
+Se o aluno já tiver atividades verificáveis no banco, como simulação de fatura ou trilhas concluídas, as missões correspondentes poderão ser concluídas automaticamente no próximo login/carregamento do progresso.
+
+O script é idempotente para essa limpeza: a remoção do progresso antigo só ocorre quando tbl_atividade_missao é criada pela primeira vez.
+
+TESTES RECOMENDADOS
+
+A) AVALIAÇÕES POR ALUNO
+- Entre com o Aluno A e faça o pré-teste da Trilha 1.
+- Saia e entre com o Aluno B.
+- O Aluno B não pode herdar o resultado do Aluno A.
+- Volte ao Aluno A e confirme que o resultado permanece após reiniciar o programa.
+- Faça o pós-teste e confirme persistência.
+
+B) ADMIN — ALUNOS REAIS
+- Entre como administrador.
+- Abra Alunos.
+- A conta teste123 e demais alunos reais devem aparecer.
+- Selecione um aluno e confira XP, nível, trilhas, missões, simulações e pré/pós da Trilha 1.
+- Os dados devem pertencer ao aluno selecionado, não ao último aluno que fez login.
+
+C) CRUD ADMINISTRATIVO
+- Edite o nome de uma trilha, feche e abra o programa: a alteração deve permanecer.
+- Edite uma missão e reinicie: deve permanecer.
+- Edite um cenário/opção e reinicie: deve permanecer e o aluno deve ver a alteração.
+- Adicione/edite uma pergunta de pré/pós e reinicie: deve permanecer.
+
+D) MISSÕES VERIFICADAS
+- Raio-X da Carteira: só aceita registro para o DIA ATUAL e conta no máximo 1 registro por dia. É necessário chegar a 7 dias distintos.
+- 50/30/20: valores que não fecham a renda ou não ficam próximos de 50/30/20 são rejeitados. Uma divisão válida conclui a missão.
+- Permanência: usa as trilhas/conteúdos concluídos registrados no banco. No protótipo atual, cada trilha concluída conta como uma unidade de conteúdo/aula.
+- Detector de Armadilhas: só progride quando existe uma simulação de FATURA real no banco.
+- Escudo de Emergência: o sistema calcula e registra uma reserva de 3 a 6 meses a partir do custo mensal informado.
+- Não existe mais botão genérico de “Concluir missão”. Missões sem uma regra automática configurada ficam bloqueadas até o administrador escolher uma regra.
+
+VALIDAÇÃO FEITA NESTE PACOTE
+
+Todos os arquivos Java foram compilados em conjunto para checagem de sintaxe e compatibilidade entre classes. O ambiente de revisão possui JDK 21 e não possui Maven; como as alterações não usam recursos exclusivos do Java 24 e não alteram a autenticação BCrypt, a checagem foi feita com javac e um stub temporário apenas para a API externa BCrypt. Nenhum stub foi incluído no projeto entregue.
+
+A execução real contra o seu SQL Server local precisa ser confirmada pelos testes acima após a migração.
