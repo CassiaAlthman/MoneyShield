@@ -1,0 +1,35 @@
+MONEYSHIELD - VERSAO PORTATIL
+
+USO RAPIDO
+
+1. Extraia toda a pasta do MoneyShield.
+2. Execute CRIAR_ATALHO.bat.
+3. Aguarde a preparacao inicial.
+4. Abra o atalho MoneyShield criado na Area de Trabalho.
+
+A versao portatil usa SQLite e nao precisa de Microsoft SQL Server.
+O banco fica em:
+portable\data\moneyshield.db
+
+Na primeira preparacao, caso a pasta ainda nao contenha o runtime e as bibliotecas,
+o script baixa automaticamente o Java e as dependencias necessarias.
+Depois disso, a versao pode ser usada offline.
+
+Para criar um pacote que ja contenha tudo e nao precise baixar nada no computador
+de destino, execute GERAR_PACOTE_PORTATIL_OFFLINE.bat e envie o ZIP criado.
+
+CREDENCIAIS DE DEMONSTRACAO
+
+Aluno
+Usuario: Aluno 123
+Senha: Exemplo123
+
+Administrador
+Usuario: ADM123
+Senha: Exemplo123
+
+IMPORTANTE
+
+A versao principal do projeto continua usando Microsoft SQL Server.
+O SQLite existe apenas como alternativa de distribuicao portatil/demonstracao.
+Os dados da versao portatil nao sao sincronizados automaticamente com o SQL Server.
